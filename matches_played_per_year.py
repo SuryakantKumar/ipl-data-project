@@ -1,7 +1,4 @@
-from main import read_matches as matches
 import matplotlib.pyplot as plt
-
-# matches = read_matches()                # importing list of per match status
 
 
 def matches_played_per_year(matches):
