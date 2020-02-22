@@ -50,7 +50,12 @@ def plot_matches_won_by_team_per_year(mwbtpy, years):
             bottom_li[i] += y[i]
         teams.append(team)
 
-    plt.legend(teams, ncol=2, loc='upper right')
+    shortened_teams = []
+    for ele in teams:
+        shortened_each = [x[0] for x in ele.split()]
+        shortened_teams.append("".join(shortened_each))
+
+    plt.legend(shortened_teams, ncol=4, loc='upper right')
     plt.xlabel('Years')
     plt.ylabel('Matches won')
     plt.title('Matches won by teams per year')

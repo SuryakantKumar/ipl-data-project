@@ -1,6 +1,7 @@
 import csv
 from matches_played_per_year import *
 from matches_won_by_teams_per_year import *
+from extra_runs_conceded_per_team_2016 import *
 
 
 def read_matches():
@@ -22,6 +23,7 @@ def main():
     deliveries = read_deliveries()
     compute_and_plot_matches_played_per_year(matches)
     compute_and_plot_matches_won_by_teams_per_year(matches)
+    compute_and_plot_extra_runs_conceded_per_team(matches, deliveries)
 
 
 if __name__ == "__main__":
