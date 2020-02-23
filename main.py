@@ -3,6 +3,7 @@ from matches_played_per_year import *
 from matches_won_by_teams_per_year import *
 from extra_runs_conceded_per_team_2016 import *
 from top_economical_bowlers_2015 import *
+from matches_won_after_toss_decision import *
 
 
 def read_matches():
@@ -26,6 +27,7 @@ def main():
     compute_and_plot_matches_won_by_teams_per_year(matches)
     compute_and_plot_extra_runs_conceded_per_team(matches, deliveries)
     compute_and_plot_top_economical_bowlers(matches, deliveries)
+    compute_and_plot_matches_won_after_toss_decision(matches)
 
 
 if __name__ == "__main__":
