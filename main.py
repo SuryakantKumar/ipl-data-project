@@ -7,6 +7,7 @@ from matches_won_after_toss_decision import *
 
 
 def read_matches():
+    """Fetch the matches.csv data into ordered dictionary format"""
     with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/matches.csv') as f_matches:
         matches = csv.DictReader(f_matches)
         # Retuning list of dictionaries i.e, matches data
@@ -14,6 +15,7 @@ def read_matches():
 
 
 def read_deliveries():
+    """Fetch the deliveries.csv data into ordered dictionary format"""
     with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/deliveries.csv') as f_deliveries:
         deliveries = csv.DictReader(f_deliveries)
         # Returning list of dictionaries i.e, deliveries data
@@ -21,6 +23,7 @@ def read_deliveries():
 
 
 def main():
+    """Call all the main functions of each scenario"""
     matches = read_matches()
     deliveries = read_deliveries()
     compute_and_plot_matches_played_per_year(matches)

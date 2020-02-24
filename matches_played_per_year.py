@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def matches_played_per_year(matches):
+    """Compute number of matches played per year """
     mppy = {}                           # Matches played per year
     for pys in matches:                 # per year status
         if pys['season'] in mppy:
@@ -17,6 +18,7 @@ def matches_played_per_year(matches):
 
 
 def plot_matches_played_per_year(matches_per_year):
+    """Plot bar chart for number of matches played per year """
     years = []
     matches_played = []
 
@@ -35,5 +37,6 @@ def plot_matches_played_per_year(matches_per_year):
 
 
 def compute_and_plot_matches_played_per_year(matches):
+    """Handle all the function calls here """
     matches_per_year = matches_played_per_year(matches)
     plot_matches_played_per_year(matches_per_year)

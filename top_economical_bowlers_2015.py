@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 
 
 def start_and_end_match_ids(matches):
+    """Compute starting match id and ending match id from matches.csv data,
+    on the basis of season 2015 to use into deliveries.csv data
+    """
     start_id = 0
     live_id = 0
     for each in matches:
@@ -14,23 +17,33 @@ def start_and_end_match_ids(matches):
 
 
 def top_economical_bowlers(deliveries, start_id, end_id):
+    """Compute total runs conceded by each bowler and total deliveries by each bowler"""
     total_runs_per_baller = {}
     total_deliveries_per_baller = {}
     for each in deliveries:
         if int(each['match_id']) >= start_id and int(each['match_id']) <= end_id:
             if each['bowler'] not in total_runs_per_baller:
                 total_runs_per_baller[each['bowler']] = int(each['total_runs'])
-                total_deliveries_per_baller[each['bowler']] = 1
+
+                if int(each['noball_runs']) != 0 or int(each['wide_runs']) != 0:
+                    total_deliveries_per_baller[each['bowler']] = 0
+                else:
+                    total_deliveries_per_baller[each['bowler']] = 1
 
             else:
                 total_runs_per_baller[each['bowler']
                                       ] += int(each['total_runs'])
-                total_deliveries_per_baller[each['bowler']] += 1
+
+                if int(each['noball_runs']) != 0 or int(each['wide_runs']) != 0:
+                    total_deliveries_per_baller[each['bowler']] += 0
+                else:
+                    total_deliveries_per_baller[each['bowler']] += 1
 
     return total_runs_per_baller, total_deliveries_per_baller
 
 
 def plot_top_economical_bowlers(total_runs_per_baller, total_deliveries_per_baller):
+    """Compute top economical bowlers and plot horizontal bar chart for top economical bowlers"""
     total_economy_per_baller = {}
     for each in total_runs_per_baller:
         total_economy_per_baller[each] = (
@@ -65,6 +78,7 @@ def plot_top_economical_bowlers(total_runs_per_baller, total_deliveries_per_ball
 
 
 def compute_and_plot_top_economical_bowlers(matches, deliveries):
+    """Handle all the function calls here """
     start_id, end_id = start_and_end_match_ids(matches)
     total_runs_per_baller, total_deliveries_per_baller = top_economical_bowlers(
         deliveries, start_id, end_id)

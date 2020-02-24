@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 
 
 def matches_won_after_toss_decision(matches):
+    """Compute number of winning matches by toss winner and decision,
+    of either choosing bat first or field first for every season"""
     bat_field_per_year = {}
     for row in matches:
         if int(row['season']) not in bat_field_per_year:
@@ -29,6 +31,7 @@ def matches_won_after_toss_decision(matches):
 
 
 def plot_matches_won_after_toss_decision(bat_field_per_year):
+    """Plot stacked bar chart for number of winning matches after toss decision as bat/field"""
     sorted_bat_field_per_year = {}
     for year in sorted(bat_field_per_year.keys()):
         sorted_bat_field_per_year[int(year)] = bat_field_per_year[year]
@@ -54,5 +57,6 @@ def plot_matches_won_after_toss_decision(bat_field_per_year):
 
 
 def compute_and_plot_matches_won_after_toss_decision(matches):
+    """Handle all the function calls here """
     bat_field_per_year = matches_won_after_toss_decision(matches)
     plot_matches_won_after_toss_decision(bat_field_per_year)

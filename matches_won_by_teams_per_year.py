@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 
 def matches_won_by_team_per_year(matches):
+    """Compute matches won by each team per season"""
     result = {}
     years = set()
     for each in matches:
@@ -39,6 +40,7 @@ def matches_won_by_team_per_year(matches):
 
 
 def plot_matches_won_by_team_per_year(mwbtpy, years):
+    """Plot stacked bar chart for matches won by each team per season"""
     bottom_li = [0 for i in range(len(years))]
     teams = []
     for team in mwbtpy:
@@ -64,5 +66,6 @@ def plot_matches_won_by_team_per_year(mwbtpy, years):
 
 
 def compute_and_plot_matches_won_by_teams_per_year(matches):
+    """Handle all the function calls here """
     mwbtpy, teams = matches_won_by_team_per_year(matches)
     plot_matches_won_by_team_per_year(mwbtpy, teams)

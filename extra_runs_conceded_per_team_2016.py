@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 
 
 def start_and_end_match_id(matches):
+    """Compute starting match id and ending match id from matches.csv data,
+    on the basis of season 2016 to use into deliveries.csv data
+    """
     start_id = 0
     live_id = 0
     for each in matches:
@@ -14,6 +17,7 @@ def start_and_end_match_id(matches):
 
 
 def extra_runs_conceded_per_team(deliveries, start_id, end_id):
+    """For every ball, Compute all the teams with their extra runs conceded """
     teams_with_extras = {}
     for each in deliveries:
         if int(each['match_id']) >= start_id and int(each['match_id']) <= end_id:
@@ -27,6 +31,7 @@ def extra_runs_conceded_per_team(deliveries, start_id, end_id):
 
 
 def plot_extra_runs_conceded_per_team(teams_with_extras):
+    """Plot horizontal bar chart for extra runs conceded by each team in season 2016 """
     teams = list(teams_with_extras.keys())
     shortened_teams = []
     for ele in teams:
@@ -44,6 +49,7 @@ def plot_extra_runs_conceded_per_team(teams_with_extras):
 
 
 def compute_and_plot_extra_runs_conceded_per_team(matches, deliveries):
+    """Handle all the function calls here """
     start_id, end_id = start_and_end_match_id(matches)
     teams_with_extras = extra_runs_conceded_per_team(
         deliveries, start_id, end_id)
