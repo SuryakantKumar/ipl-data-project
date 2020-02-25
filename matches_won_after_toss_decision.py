@@ -5,27 +5,27 @@ def matches_won_after_toss_decision(matches):
     """Compute number of winning matches by toss winner and decision,
     of either choosing bat first or field first for every season"""
     bat_field_per_year = {}
-    for row in matches:
-        if int(row['season']) not in bat_field_per_year:
+    for match in matches:
+        if int(match['season']) not in bat_field_per_year:
             bat_field_won_count = {}
-            if row['toss_winner'] == row['winner']:
-                if row['toss_decision'] == 'bat':
+            if match['toss_winner'] == match['winner']:
+                if match['toss_decision'] == 'bat':
                     bat_field_won_count['bat'] = 1
                 else:
                     bat_field_won_count['field'] = 1
-            bat_field_per_year[int(row['season'])] = bat_field_won_count
+            bat_field_per_year[int(match['season'])] = bat_field_won_count
 
         else:
-            bat_field_won_count = bat_field_per_year[int(row['season'])]
-            if row['toss_winner'] == row['winner']:
+            bat_field_won_count = bat_field_per_year[int(match['season'])]
+            if match['toss_winner'] == match['winner']:
 
-                if row['toss_decision'] == 'bat' and 'bat' in bat_field_won_count:
+                if match['toss_decision'] == 'bat' and 'bat' in bat_field_won_count:
                     bat_field_won_count['bat'] += 1
-                elif row['toss_decision'] == 'bat' and 'bat' not in bat_field_won_count:
+                elif match['toss_decision'] == 'bat' and 'bat' not in bat_field_won_count:
                     bat_field_won_count['bat'] = 1
-                elif row['toss_decision'] == 'field' and 'field' in bat_field_won_count:
+                elif match['toss_decision'] == 'field' and 'field' in bat_field_won_count:
                     bat_field_won_count['field'] += 1
-                elif row['toss_decision'] == 'field' and 'field' not in bat_field_won_count:
+                elif match['toss_decision'] == 'field' and 'field' not in bat_field_won_count:
                     bat_field_won_count['field'] = 1
 
     sorted_bat_field_per_year = {}
