@@ -22,11 +22,13 @@ def extra_runs_conceded_per_team(deliveries, start_id, end_id):
     for each in deliveries:
         if int(each['match_id']) >= start_id and int(each['match_id']) <= end_id:
             if each['bowling_team'] not in teams_with_extras:
-                teams_with_extras[each['bowling_team']] = int(
-                    each['extra_runs'])
+                if int(each['is_super_over']) == 0:
+                    teams_with_extras[each['bowling_team']] = int(
+                        each['extra_runs'])
             else:
-                teams_with_extras[each['bowling_team']
-                                  ] += int(each['extra_runs'])
+                if int(each['is_super_over']) == 0:
+                    teams_with_extras[each['bowling_team']
+                                      ] += int(each['extra_runs'])
     return teams_with_extras
 
 

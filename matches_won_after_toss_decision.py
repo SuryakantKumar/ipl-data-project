@@ -27,15 +27,16 @@ def matches_won_after_toss_decision(matches):
                     bat_field_won_count['field'] += 1
                 elif row['toss_decision'] == 'field' and 'field' not in bat_field_won_count:
                     bat_field_won_count['field'] = 1
-    return bat_field_per_year
 
-
-def plot_matches_won_after_toss_decision(bat_field_per_year):
-    """Plot stacked bar chart for number of winning matches after toss decision as bat/field"""
     sorted_bat_field_per_year = {}
     for year in sorted(bat_field_per_year.keys()):
         sorted_bat_field_per_year[int(year)] = bat_field_per_year[year]
 
+    return sorted_bat_field_per_year
+
+
+def plot_matches_won_after_toss_decision(sorted_bat_field_per_year):
+    """Plot stacked bar chart for number of winning matches after toss decision as bat/field"""
     years = []
     won_over_bat = []
     won_over_field = []
@@ -58,5 +59,5 @@ def plot_matches_won_after_toss_decision(bat_field_per_year):
 
 def compute_and_plot_matches_won_after_toss_decision(matches):
     """Handle all the function calls here """
-    bat_field_per_year = matches_won_after_toss_decision(matches)
-    plot_matches_won_after_toss_decision(bat_field_per_year)
+    sorted_bat_field_per_year = matches_won_after_toss_decision(matches)
+    plot_matches_won_after_toss_decision(sorted_bat_field_per_year)

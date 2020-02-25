@@ -17,33 +17,31 @@ def start_and_end_match_ids(matches):
 
 
 def top_economical_bowlers(deliveries, start_id, end_id):
-    """Compute total runs conceded by each bowler and total deliveries by each bowler"""
+    """Compute total runs conceded by each bowler and total deliveries by each bowler then top economical bowlers"""
     total_runs_per_baller = {}
     total_deliveries_per_baller = {}
     for each in deliveries:
         if int(each['match_id']) >= start_id and int(each['match_id']) <= end_id:
             if each['bowler'] not in total_runs_per_baller:
-                total_runs_per_baller[each['bowler']] = int(each['total_runs'])
+                if int(each['is_super_over']) == 0:
+                    total_runs_per_baller[each['bowler']] = (
+                        int(each['total_runs']) - (int(each['bye_runs']) + int(each['legbye_runs'])))
 
-                if int(each['noball_runs']) != 0 or int(each['wide_runs']) != 0:
+                if int(each['noball_runs']) != 0 or int(each['wide_runs']) != 0 or int(each['is_super_over']) != 0:
                     total_deliveries_per_baller[each['bowler']] = 0
                 else:
                     total_deliveries_per_baller[each['bowler']] = 1
 
             else:
-                total_runs_per_baller[each['bowler']
-                                      ] += int(each['total_runs'])
+                if int(each['is_super_over']) == 0:
+                    total_runs_per_baller[each['bowler']] += (
+                        int(each['total_runs']) - (int(each['bye_runs']) + int(each['legbye_runs'])))
 
-                if int(each['noball_runs']) != 0 or int(each['wide_runs']) != 0:
+                if int(each['noball_runs']) != 0 or int(each['wide_runs']) != 0 or int(each['is_super_over']) != 0:
                     total_deliveries_per_baller[each['bowler']] += 0
                 else:
                     total_deliveries_per_baller[each['bowler']] += 1
 
-    return total_runs_per_baller, total_deliveries_per_baller
-
-
-def plot_top_economical_bowlers(total_runs_per_baller, total_deliveries_per_baller):
-    """Compute top economical bowlers and plot horizontal bar chart for top economical bowlers"""
     total_economy_per_baller = {}
     for each in total_runs_per_baller:
         total_economy_per_baller[each] = (
@@ -67,6 +65,11 @@ def plot_top_economical_bowlers(total_runs_per_baller, total_deliveries_per_ball
                            ] = total_economy_per_baller_sorted[each]
         count += 1
 
+    return top_economy_bowler
+
+
+def plot_top_economical_bowlers(top_economy_bowler):
+    """plot horizontal bar chart for top economical bowlers"""
     bowlers = list(top_economy_bowler.values())
     economy = list(top_economy_bowler.keys())
     plt.barh(bowlers, economy, color="#6c3376",
@@ -80,7 +83,5 @@ def plot_top_economical_bowlers(total_runs_per_baller, total_deliveries_per_ball
 def compute_and_plot_top_economical_bowlers(matches, deliveries):
     """Handle all the function calls here """
     start_id, end_id = start_and_end_match_ids(matches)
-    total_runs_per_baller, total_deliveries_per_baller = top_economical_bowlers(
-        deliveries, start_id, end_id)
-    plot_top_economical_bowlers(
-        total_runs_per_baller, total_deliveries_per_baller)
+    top_economy_bowler = top_economical_bowlers(deliveries, start_id, end_id)
+    plot_top_economical_bowlers(top_economy_bowler)

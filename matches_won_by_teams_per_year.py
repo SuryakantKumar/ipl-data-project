@@ -8,6 +8,7 @@ def matches_won_by_team_per_year(matches):
     for each in matches:
         if each['winner'] in result and each['winner'] != '':
             matches_won_dict = result[each['winner']]
+
             if int(each['season']) in matches_won_dict:
                 matches_won_dict[int(each['season'])] += 1
             else:
