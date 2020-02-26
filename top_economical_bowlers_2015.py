@@ -61,8 +61,8 @@ def top_economical_bowlers(deliveries, start_id, end_id):
     for delivery in total_economy_per_bowler_sorted:
         if limit_count == 15:
             break
-        top_economy_bowlers[float('%.3f' % delivery)
-                           ] = total_economy_per_bowler_sorted[delivery]
+        top_economy_bowlers[float('%.2f' % delivery)
+                            ] = total_economy_per_bowler_sorted[delivery]
         limit_count += 1
 
     return top_economy_bowlers
