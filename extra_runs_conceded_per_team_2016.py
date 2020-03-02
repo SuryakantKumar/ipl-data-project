@@ -5,15 +5,16 @@ def start_and_end_match_id(matches):
     """Compute starting match id and ending match id from matches.csv data,
     on the basis of season 2016 to use into deliveries.csv data
     """
-    start_id = 0
-    live_id = 0
+    start_id = 1000
+    end_id = -1000
     for match in matches:
-        if match['season'] != '2016':
-            start_id += 1
-        else:
-            live_id += 1
-
-    return start_id + 1, start_id + live_id
+        if match['season'] == '2016':
+            if int(match['id']) < start_id:
+                start_id = int(match['id'])
+            
+            if int(match['id']) > end_id:
+                end_id = int(match['id'])
+    return start_id, end_id
 
 
 def extra_runs_conceded_per_team(deliveries, start_id, end_id):
@@ -29,6 +30,15 @@ def extra_runs_conceded_per_team(deliveries, start_id, end_id):
                 if int(delivery['is_super_over']) == 0:
                     teams_with_extras[delivery['bowling_team']
                                       ] += int(delivery['extra_runs'])
+    # Handle the edge case when "Rising pune supergiant" in present along side 
+    if 'Rising Pune Supergiant' in teams_with_extras:
+        if 'Rising Pune Supergiants' in teams_with_extras:
+            teams_with_extras['Rising Pune Supergiants'] += teams_with_extras['Rising Pune Supergiant']
+            del teams_with_extras['Rising Pune Supergiant']
+        else:
+            teams_with_extras['Rising Pune Supergiants'] = teams_with_extras['Rising Pune Supergiant']
+            del teams_with_extras['Rising Pune Supergiant']
+
     return teams_with_extras
 
 

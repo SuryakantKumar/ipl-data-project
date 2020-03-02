@@ -5,16 +5,16 @@ def start_and_end_match_ids(matches):
     """Compute starting match id and ending match id from matches.csv data,
     on the basis of season 2015 to use into deliveries.csv data
     """
-    start_id = 0
-    live_id = 0
+    start_id = 1000
+    end_id = -1000
     for match in matches:
-        if match['season'] != '2015':
-            start_id += 1
-        else:
-            live_id += 1
-
-    return start_id - live_id, start_id - 1
-
+        if match['season'] == '2015':
+            if int(match['id']) < start_id:
+                start_id = int(match['id'])
+            
+            if int(match['id']) > end_id:
+                end_id = int(match['id'])
+    return start_id, end_id
 
 def top_economical_bowlers(deliveries, start_id, end_id):
     """Compute total runs conceded by each bowler and total deliveries by each bowler then top economical bowlers"""
