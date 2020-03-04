@@ -1,14 +1,14 @@
 import csv
-from matches_played_per_year import compute_and_plot_matches_played_per_year
-from matches_won_by_teams_per_year import compute_and_plot_matches_won_by_teams_per_year
-from extra_runs_conceded_per_team_2016 import compute_and_plot_extra_runs_conceded_per_team
-from top_economical_bowlers_2015 import compute_and_plot_top_economical_bowlers
-from matches_won_after_toss_decision import compute_and_plot_matches_won_after_toss_decision
+from ipl_analytics.csv.matches_played_per_year import compute_and_plot_matches_played_per_year
+from ipl_analytics.csv.matches_won_by_teams_per_year import compute_and_plot_matches_won_by_teams_per_year
+from ipl_analytics.csv.extra_runs_conceded_per_team_2016 import compute_and_plot_extra_runs_conceded_per_team
+from ipl_analytics.csv.top_economical_bowlers_2015 import compute_and_plot_top_economical_bowlers
+from ipl_analytics.csv.matches_won_after_toss_decision import compute_and_plot_matches_won_after_toss_decision
 
 
 def read_matches(file):
     """Fetch the matches.csv data into ordered dictionary format"""
-    with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/'+file) as f_matches:
+    with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl_data/'+file) as f_matches:
         matches = csv.DictReader(f_matches)
         # Retuning list of dictionaries i.e, matches data
         return list(matches)
@@ -16,7 +16,7 @@ def read_matches(file):
 
 def read_deliveries(file):
     """Fetch the deliveries.csv data into ordered dictionary format"""
-    with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/'+file) as f_deliveries:
+    with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl_data/'+file) as f_deliveries:
         deliveries = csv.DictReader(f_deliveries)
         # Returning list of dictionaries i.e, deliveries data
         return list(deliveries)

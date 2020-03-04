@@ -3,7 +3,7 @@ import sys
 sys.path.append(path.join(path.dirname(__file__), '..'))
 
 from main import read_matches, read_deliveries
-from top_economical_bowlers_2015 import start_and_end_match_ids, top_economical_bowlers
+from ipl_analytics.csv.top_economical_bowlers_2015 import start_and_end_match_ids, top_economical_bowlers
 
 
 def test_start_and_end_match_ids():
@@ -16,7 +16,16 @@ def test_start_and_end_match_ids():
  
 
 def test_top_economical_bowlers():
-    expected_output = {6.0: 'DJ Muthuswami', 6.75: 'M Morkel', 7.5: 'UT Yadav', 8.57: 'NM Coulter-Nile', 12.0: 'JA Morkel'}
+    expected_output = {5.0: 'NM Coulter-Nile', 
+                    6.0: 'JP Duminy', 
+                    6.5: 'Imran Tahir', 
+                    7.6: 'R Vinay Kumar', 
+                    8.33: 'SL Malinga', 
+                    8.5: 'DJ Muthuswami', 
+                    9.5: 'Harbhajan Singh', 
+                    11.0: 'JA Morkel', 
+                    11.5: 'PP Ojha', 
+                    12.67: 'JJ Bumrah'}
 
     mock_matches = read_matches('mock_matches.csv')
     mock_deliveries = read_deliveries('mock_deliveries.csv')

@@ -35,9 +35,6 @@ def extra_runs_conceded_per_team(deliveries, start_id, end_id):
         if 'Rising Pune Supergiants' in teams_with_extras:
             teams_with_extras['Rising Pune Supergiants'] += teams_with_extras['Rising Pune Supergiant']
             del teams_with_extras['Rising Pune Supergiant']
-        else:
-            teams_with_extras['Rising Pune Supergiants'] = teams_with_extras['Rising Pune Supergiant']
-            del teams_with_extras['Rising Pune Supergiant']
 
     return teams_with_extras
 

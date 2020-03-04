@@ -3,7 +3,7 @@ import sys
 sys.path.append(path.join(path.dirname(__file__), '..'))
 
 from main import read_matches, read_deliveries
-from extra_runs_conceded_per_team_2016 import start_and_end_match_id, extra_runs_conceded_per_team
+from ipl_analytics.csv.extra_runs_conceded_per_team_2016 import start_and_end_match_id, extra_runs_conceded_per_team
 
 
 def test_start_and_end_match_id():

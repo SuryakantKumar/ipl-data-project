@@ -1,0 +1,193 @@
+**** Create database
+
+CREATE DATABASE ipl_test_db;
+
+**** Connection to ipl_test_db database
+
+\c ipl_test_db;
+
+**** Create "matches" table
+
+CREATE TABLE matches(
+	id INTEGER PRIMARY KEY,
+	season INTEGER NOT NULL,
+	city VARCHAR,
+	date DATE,
+	team1 VARCHAR,
+	team2 VARCHAR,
+	toss_winner VARCHAR,
+	toss_decision VARCHAR,
+	result VARCHAR,
+	dl_applied BOOLEAN,
+	winner VARCHAR,
+	win_by_runs INTEGER,
+	win_by_wickets INTEGER,
+	player_of_match VARCHAR,
+	venue VARCHAR,
+	umpire1 VARCHAR,
+	umpire2 VARCHAR,
+	umpire3 VARCHAR
+	);
+
+**** Import matches.csv file into matches table
+
+\COPY matches 
+FROM '/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/matches.csv' DELIMITER ',' CSV HEADER;
+
+**** Create "deliveries" table
+
+CREATE TABLE deliveries(
+	match_id INTEGER,
+	inning INTEGER,
+	batting_team VARCHAR,
+	bowling_team VARCHAR,
+	over INTEGER,
+	ball INTEGER,
+	batsman VARCHAR,
+	non_striker VARCHAR,
+	bowler VARCHAR,
+	is_super_over BOOLEAN,
+	wide_runs INTEGER,
+	bye_runs INTEGER,
+	legbye_runs INTEGER,
+	noball_runs INTEGER,
+	penalty_runs INTEGER,
+	batsman_runs INTEGER,
+	extra_runs INTEGER,
+	total_runs INTEGER,
+	player_dismissed VARCHAR,
+	dismissal_kind VARCHAR,
+	fielder VARCHAR
+	);
+
+**** Import deliveries.csv into deliveries table
+
+\COPY deliveries 
+FROM '/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/deliveries.csv' DELIMITER ',' CSV HEADER;
+
+**** Problem 01 : matches played per year
+
+SELECT DISTINCT season, COUNT(season) 
+FROM mock_matches 
+GROUP BY season;
+
+**** Problem 02 : matches won by teams per year
+
+SELECT winner, season, COUNT(season) 
+FROM matches 
+GROUP BY winner, season 
+ORDER BY winner, season;
+
+**** Problem 03 : extra runs conceded per team in 2016
+
+SELECT bowling_team, SUM(extra_runs) 
+FROM deliveries 
+WHERE match_id 
+IN (SELECT id 
+	FROM matches 
+	WHERE season = 2016
+	) 
+GROUP BY bowling_team;
+
+**** Problem 04 : top economical bowlers in 2015
+
+WITH total_runs AS(
+		SELECT bowler, (SUM(total_runs) - SUM(bye_runs) - SUM(legbye_runs)) AS runs
+		FROM deliveries 
+			JOIN matches ON matches.id = deliveries.match_id 
+		WHERE season = 2015 AND is_super_over = FALSE
+		GROUP BY bowler
+		ORDER BY bowler
+	),
+	total_balls AS(
+		SELECT bowler, COUNT(ball) AS balls
+		FROM deliveries 
+			JOIN matches ON matches.id = deliveries.match_id 
+		WHERE season = 2015 AND is_super_over = FALSE AND noball_runs = 0 AND wide_runs = 0
+		GROUP BY bowler
+		ORDER BY bowler
+	)
+SELECT total_runs.bowler, TRUNC(((runs * 6.0)/balls), 2) AS economy 
+FROM total_runs 
+JOIN total_balls ON total_runs.bowler = total_balls.bowler 
+ORDER BY economy 
+LIMIT 10;
+
+**** Problem 05 : matches won after toss decision
+
+WITH won_over_bat AS(
+		SELECT season, COUNT(season) AS won_over_bat_count
+		FROM matches
+		WHERE toss_decision = 'bat' AND toss_winner = winner
+		GROUP BY season
+		ORDER BY season
+	),
+	won_over_field AS(
+		SELECT season, COUNT(season) AS won_over_field_count
+		FROM matches
+		WHERE toss_decision = 'field' AND toss_winner = winner
+		GROUP BY season
+		ORDER BY season
+	)
+SELECT won_over_bat.season, won_over_bat.won_over_bat_count, won_over_field.won_over_field_count
+FROM won_over_bat
+JOIN won_over_field ON won_over_bat.season = won_over_field.season ;
+
+**** create 'mock_matches' table
+
+CREATE TABLE mock_matches(
+	id INTEGER PRIMARY KEY,
+	season INTEGER NOT NULL,
+	city VARCHAR,
+	date DATE,
+	team1 VARCHAR,
+	team2 VARCHAR,
+	toss_winner VARCHAR,
+	toss_decision VARCHAR,
+	result VARCHAR,
+	dl_applied BOOLEAN,
+	winner VARCHAR,
+	win_by_runs INTEGER,
+	win_by_wickets INTEGER,
+	player_of_match VARCHAR,
+	venue VARCHAR,
+	umpire1 VARCHAR,
+	umpire2 VARCHAR,
+	umpire3 VARCHAR
+	);
+
+**** Import mock_matches.csv file into matches table
+
+\COPY mock_matches 
+FROM '/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/mock_matches.csv' DELIMITER ',' CSV HEADER;
+
+**** create 'mock_deliveries' table
+
+CREATE TABLE mock_deliveries(
+	match_id INTEGER,
+	inning INTEGER,
+	batting_team VARCHAR,
+	bowling_team VARCHAR,
+	over INTEGER,
+	ball INTEGER,
+	batsman VARCHAR,
+	non_striker VARCHAR,
+	bowler VARCHAR,
+	is_super_over BOOLEAN,
+	wide_runs INTEGER,
+	bye_runs INTEGER,
+	legbye_runs INTEGER,
+	noball_runs INTEGER,
+	penalty_runs INTEGER,
+	batsman_runs INTEGER,
+	extra_runs INTEGER,
+	total_runs INTEGER,
+	player_dismissed VARCHAR,
+	dismissal_kind VARCHAR,
+	fielder VARCHAR
+	);
+
+**** Import mock_deliveries.csv into deliveries table
+
+\COPY mock_deliveries 
+FROM '/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl/mock_deliveries.csv' DELIMITER ',' CSV HEADER;
