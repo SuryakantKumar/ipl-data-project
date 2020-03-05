@@ -24,44 +24,45 @@ I have covered basic analysis of Ipl during 2008 - 2017 as :
 
 ## Directory Structure :
 
-IPL-Data-Project
-├── README.md
-├── analytics_plots
-│   ├── extra_runs_conceded_per_team_2016.png
-│   ├── matches_played_per_year.png
-│   ├── matches_won_after_toss_decision.png
-│   ├── matches_won_by_teams_per_year.png
-│   └── top_economical_bowlers_2015.png
-├── ipl_analytics
-│   ├── __init__.py
-│   ├── csv
-│   │   ├── __init__.py
-│   │   ├── extra_runs_conceded_per_team_2016.py
-│   │   ├── matches_played_per_year.py
-│   │   ├── matches_won_after_toss_decision.py
-│   │   ├── matches_won_by_teams_per_year.py
-│   │   └── top_economical_bowlers_2015.py
-│   └── postgres
-│       ├── __init__.py
-│       ├── configuration.ini
-│       ├── ipl_test_db.txt
-│       └── problem_queries.py
-├── ipl_data
-│   ├── deliveries.csv
-│   ├── matches.csv
-│   ├── mock_deliveries.csv
-│   └── mock_matches.csv
-├── main.py
-├── requirements.txt
-└── tests
-    ├── __init__.py
-    ├── configuration.ini
-    ├── test_extra_runs_conceded_per_team_2016.py
-    ├── test_matches_played_per_year.py
-    ├── test_matches_won_after_toss_decision.py
-    ├── test_matches_won_by_teams_per_year.py
-    ├── test_postgres.py
-    └── test_top_economical_bowlers_2015.py
+    IPL-Data-Project
+    ├── README.md
+    ├── analytics_plots
+    │   ├── extra_runs_conceded_per_team_2016.png
+    │   ├── matches_played_per_year.png
+    │   ├── matches_won_after_toss_decision.png
+    │   ├── matches_won_by_teams_per_year.png
+    │   └── top_economical_bowlers_2015.png
+    ├── ipl_analytics
+    │   ├── __init__.py
+    │   ├── csv
+    │   │   ├── __init__.py
+    │   │   ├── extra_runs_conceded_per_team_2016.py
+    │   │   ├── matches_played_per_year.py
+    │   │   ├── matches_won_after_toss_decision.py
+    │   │   ├── matches_won_by_teams_per_year.py
+    │   │   └── top_economical_bowlers_2015.py
+    │   └── postgres
+    │       ├── __init__.py
+    │       ├── configuration.ini
+    │       ├── ipl_test_db.txt
+    │       └── problem_queries.py
+    ├── ipl_data
+    │   ├── deliveries.csv
+    │   ├── matches.csv
+    │   ├── mock_deliveries.csv
+    │   └── mock_matches.csv
+    ├── main.py
+    ├── requirements.txt
+    └── tests
+        ├── __init__.py
+        ├── configuration.ini
+        ├── test_extra_runs_conceded_per_team_2016.py
+        ├── test_matches_played_per_year.py
+        ├── test_matches_won_after_toss_decision.py
+        ├── test_matches_won_by_teams_per_year.py
+        ├── test_postgres.py
+        └── test_top_economical_bowlers_2015.py
+
 
 ## Instructions :
 - Execute 'main.py' file in IPL-Data-Project directory to see the plots.
