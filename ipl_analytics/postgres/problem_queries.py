@@ -2,9 +2,15 @@ import psycopg2 as pg
 from configparser import ConfigParser
 from simplecrypt import decrypt
 from base64 import b64decode
- 
- 
+
+
 def config(filename='configuration.ini', section='postgres'):
+    '''parses  configuration.ini file and stores it as a dictionary
+
+    :param filename : string, name of configuration file \n
+    :param section : string, name of section in configuration file \n
+    :return db : dictionary of configuration settings
+    '''
     parser = ConfigParser()
     parser.read(filename)
 
@@ -19,11 +25,16 @@ def config(filename='configuration.ini', section='postgres'):
     encoded_cipher = db['password']
     cipher = b64decode(encoded_cipher)
     db['password'] = decrypt(message, cipher).decode('utf-8')
-    
+
     return db
 
 
 def fetch_data(query):
+    '''Fetch result after execution of query
+
+    :param query : string, sql query \n
+    :return record : list of tuples of result
+    '''
     params = config()
 
     connection = pg.connect(**params)
@@ -38,6 +49,11 @@ def fetch_data(query):
 
 
 def matches_played_per_year_sql(table='matches'):
+    '''Execute query for matches played per year
+
+    :param table : table of matches.csv data \n
+    :return matches_played_per_year : dictionary of matches played per year
+    '''
     matches_played_per_year = {}
 
     query = """SELECT DISTINCT season, COUNT(season) 
@@ -54,6 +70,11 @@ def matches_played_per_year_sql(table='matches'):
 
 
 def matches_won_by_teams_per_year_sql(table='matches'):
+    '''Execute query for matches won by teams per year
+
+    :param table : table of matches.csv data \n
+    :return matches_won_by_teams_per_year : dictionary of matches won by teams per year
+    '''
     matches_won_by_teams_per_year = {}
 
     query = """SELECT winner, season, COUNT(season) 
@@ -77,6 +98,12 @@ def matches_won_by_teams_per_year_sql(table='matches'):
 
 
 def extra_runs_conceded_per_team_2016_sql(table1='matches', table2='deliveries'):
+    '''Execute query for extra runs conceded per team in 2016
+
+    :param table1 : table of matches.csv data \n
+    :param table2 : table of deliveries.csv data \n
+    :return extra_runs_conceded_per_team : dictionary of extra runs conceded per team
+    '''
     extra_runs_conceded_per_team = {}
 
     query = """SELECT bowling_team, SUM(extra_runs) 
@@ -98,6 +125,12 @@ def extra_runs_conceded_per_team_2016_sql(table1='matches', table2='deliveries')
 
 
 def top_economical_bowlers_2015_sql(table1='matches', table2='deliveries'):
+    '''Execute query for top economical bowlers in 2015
+
+    :param table1 : table of matches.csv data \n
+    :param table2 : table of deliveries.csv data \n
+    :return top_economical_bowlers : dictionary of top economical bowlers with their economy
+    '''
     top_economical_bowlers = {}
 
     query = """WITH total_runs AS(
@@ -132,6 +165,11 @@ def top_economical_bowlers_2015_sql(table1='matches', table2='deliveries'):
 
 
 def matches_won_after_toss_decision(table='matches'):
+    '''Execute query for matches won after toss decision
+
+    :param table : table of matches.csv data \n
+    :return matches_won_after_toss : dictionary of matches won after toss decision as bat/field
+    '''
     matches_won_after_toss = {}
 
     query = """WITH won_over_bat AS(

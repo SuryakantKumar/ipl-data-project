@@ -65,7 +65,7 @@ I have covered basic analysis of Ipl during 2008 - 2017 as :
 
 
 ## Instructions :
-- Execute 'main.py' file in IPL-Data-Project directory to see the plots.
+- Execute 'main.py' file in IPL-Data-Project directory to see the plots. Make sure the paths are correct according to the project on your system. You can change it in main.py file at the time of extraction of data
 - There are five resulting plot files (.png format) in analytics_plots directories representing my analysis.
 - If you want to run the tests on CSV or postgres then, First navigate to 'tests' folder then execute 'py.test'
 - If you want to check the coverage of the tests then, First navigate to 'tests' folder then you can generate html page of coverage for every test using command 'coverage html' 

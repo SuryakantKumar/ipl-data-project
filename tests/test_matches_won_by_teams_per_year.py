@@ -6,6 +6,8 @@ from main import read_matches
 from ipl_analytics.csv.matches_won_by_teams_per_year import matches_won_by_team_per_year
 
 def test_matches_won_by_team_per_year():
+    '''test case of matches_won_by_team_per_year() function for matches won by teams per year'''
+
     expected_output = ({'Sunrisers Hyderabad': {2008: 0, 2009: 0, 2010: 0, 2011: 0, 2015: 0, 2016: 0, 2017: 2}, 
                         'Kolkata Knight Riders': {2008: 1, 2009: 0, 2010: 1, 2011: 0, 2015: 1, 2016: 1, 2017: 1}, 
                         'Delhi Daredevils': {2008: 0, 2009: 0, 2010: 0, 2011: 0, 2015: 0, 2016: 0, 2017: 3}, 

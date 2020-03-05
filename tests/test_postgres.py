@@ -10,6 +10,8 @@ from ipl_analytics.postgres.problem_queries import (matches_played_per_year_sql,
 
 
 def test_matches_played_per_year_sql():
+    '''test case of matches_played_per_year_sql() function for sql query'''
+
     expected_output = {2017: 6, 
                         2016: 2, 
                         2010: 1, 
@@ -24,6 +26,8 @@ def test_matches_played_per_year_sql():
 
 
 def test_matches_won_by_teams_per_year_sql():
+    '''test case of matches_won_by_teams_per_year_sql() function for sql query'''
+
     expected_output = {'Chennai Super Kings': {2011: 1, 2015: 1}, 
                         'Delhi Daredevils': {2017: 3}, 
                         'Kolkata Knight Riders': {2008: 1, 2010: 1, 2015: 1, 2016: 1, 2017: 1}, 
@@ -38,6 +42,8 @@ def test_matches_won_by_teams_per_year_sql():
 
 
 def test_extra_runs_conceded_per_team_2016_sql():
+    '''test case of extra_runs_conceded_per_team_2016_sql() function for sql query'''
+
     expected_output = {'Kolkata Knight Riders': 1, 
                         'Rising Pune Supergiant': 4, 
                         'Rising Pune Supergiants': 4}
@@ -49,6 +55,8 @@ def test_extra_runs_conceded_per_team_2016_sql():
 
 
 def test_top_economical_bowlers_2015_sql():
+    '''test case of top_economical_bowlers_2015_sql() function for sql query'''
+
     expected_output = {'NM Coulter-Nile': 5.0, 
                         'JP Duminy': 6.0, 
                         'A Mishra': 6.0, 
@@ -67,6 +75,8 @@ def test_top_economical_bowlers_2015_sql():
 
 
 def test_matches_won_after_toss_decision():
+    '''test case of matches_won_after_toss_decision() function for sql query'''
+
     expected_output = {2011: {'bat': 1, 'field': 1}, 
                         2017: {'bat': 2, 'field': 3}}
 

@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 def start_and_end_match_ids(matches):
     """Compute starting match id and ending match id from matches.csv data,
     on the basis of season 2015 to use into deliveries.csv data
+
+    :param matches : list of dictionaries of matches.csv data \n
+    :return start_id : int start match id of matches played in 2015 \n
+    :return end_id : int end match id of matches played in 2015
     """
     start_id = 1000
     end_id = -1000
@@ -11,13 +15,20 @@ def start_and_end_match_ids(matches):
         if match['season'] == '2015':
             if int(match['id']) < start_id:
                 start_id = int(match['id'])
-            
+
             if int(match['id']) > end_id:
                 end_id = int(match['id'])
     return start_id, end_id
 
+
 def top_economical_bowlers(deliveries, start_id, end_id):
-    """Compute total runs conceded by each bowler and total deliveries by each bowler then top economical bowlers"""
+    """Compute total runs conceded by each bowler and total deliveries by each bowler then top economical bowlers
+
+    :param deliveries : list of dictionaries of deliveries.csv data \n
+    :param start_id : int start match id of matches played in 2015 \n
+    :param end_id : int end match id of matches played in 2015 \n
+    :return top_economy_bowlers : dictionary of bowlers having top economy
+    """
     total_runs_per_bowler = {}
     total_deliveries_per_bowler = {}
     for delivery in deliveries:
@@ -69,7 +80,10 @@ def top_economical_bowlers(deliveries, start_id, end_id):
 
 
 def plot_top_economical_bowlers(top_economy_bowler):
-    """plot horizontal bar chart for top economical bowlers"""
+    """plot horizontal bar chart for top economical bowlers
+
+    :param top_economy_bowlers : dictionary of bowlers having top economy
+    """
     bowlers = list(top_economy_bowler.values())
     economy = list(top_economy_bowler.keys())
     plt.barh(bowlers, economy, color="#6c3376",
@@ -81,7 +95,11 @@ def plot_top_economical_bowlers(top_economy_bowler):
 
 
 def compute_and_plot_top_economical_bowlers(matches, deliveries):
-    """Handle all the function calls here """
+    """Handle all the function calls here 
+
+    :param matches : list of dictionaries of matches.csv data \n
+    :param deliveries : list of dictionaries of deliveries.csv data
+    """
     start_id, end_id = start_and_end_match_ids(matches)
     top_economy_bowlers = top_economical_bowlers(deliveries, start_id, end_id)
     plot_top_economical_bowlers(top_economy_bowlers)

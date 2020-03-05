@@ -7,6 +7,8 @@ from ipl_analytics.csv.matches_won_after_toss_decision import matches_won_after_
 
 
 def test_matches_won_after_toss_decision():
+    '''test case of matches_won_after_toss_decision() function for matches won after toss decision'''
+
     expected_output = {2008: {}, 
                     2009: {}, 
                     2010: {}, 

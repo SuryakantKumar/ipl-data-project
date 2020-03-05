@@ -7,7 +7,11 @@ from ipl_analytics.csv.matches_won_after_toss_decision import compute_and_plot_m
 
 
 def read_matches(file):
-    """Fetch the matches.csv data into ordered dictionary format"""
+    """Fetch the matches.csv data into ordered dictionary format
+
+    :param file : raw matches or mock_matches csv file \n
+    :return matches : List of dictionaries of matches.csv data
+    """
     with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl_data/'+file) as f_matches:
         matches = csv.DictReader(f_matches)
         # Retuning list of dictionaries i.e, matches data
@@ -15,7 +19,11 @@ def read_matches(file):
 
 
 def read_deliveries(file):
-    """Fetch the deliveries.csv data into ordered dictionary format"""
+    """Fetch the deliveries.csv data into ordered dictionary format
+
+    :param file : raw deliveries or mock_deliveries csv file \n
+    :return deliveries : List of dictionaries of deliveries.csv data
+    """
     with open('/Users/suryakantkumar/MountBlueSpace/2020.02.20/IPL-Data-Project/ipl_data/'+file) as f_deliveries:
         deliveries = csv.DictReader(f_deliveries)
         # Returning list of dictionaries i.e, deliveries data
