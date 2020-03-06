@@ -4,7 +4,7 @@ from simplecrypt import decrypt
 from base64 import b64decode
 
 
-def config(filename='configuration.ini', section='postgres'):
+def get_config(filename='configuration.ini', section='postgres'):
     '''parses  configuration.ini file and stores it as a dictionary
 
     :param filename : string, name of configuration file \n
@@ -14,7 +14,7 @@ def config(filename='configuration.ini', section='postgres'):
     parser = ConfigParser()
     parser.read(filename)
 
-    message = parser['encryption_key']['key']
+    key = parser['encryption_key']['key']
 
     db = {}
     if parser.has_section(section):
@@ -22,9 +22,9 @@ def config(filename='configuration.ini', section='postgres'):
         for param in params:
             db[param[0]] = param[1]
 
-    encoded_cipher = db['password']
-    cipher = b64decode(encoded_cipher)
-    db['password'] = decrypt(message, cipher).decode('utf-8')
+    decoded_password = db['password']
+    cipher = b64decode(decoded_password)
+    db['password'] = decrypt(key, cipher).decode('utf-8')
 
     return db
 
@@ -35,7 +35,7 @@ def fetch_data(query):
     :param query : string, sql query \n
     :return record : list of tuples of result
     '''
-    params = config()
+    params = get_config()
 
     connection = pg.connect(**params)
     cursor = connection.cursor()

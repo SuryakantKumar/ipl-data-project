@@ -1,8 +1,10 @@
+'''Importing pyplot module of matplotlib library'''
+
 import matplotlib.pyplot as plt
 
 
 def matches_played_per_year(matches):
-    """Compute number of matches played per year 
+    """Compute number of matches played per year
 
     :param matches : list of dictionaries of matches.csv data \n
     :return match_played_per_year_sorted : dictionary of matches played per year in sorted by year
@@ -23,7 +25,7 @@ def matches_played_per_year(matches):
 
 
 def plot_matches_played_per_year(matches_per_year):
-    """Plot bar chart for number of matches played per year 
+    """Plot bar chart for number of matches played per year
 
     :param matches_per_year : dictionary of matches played per year
     """
@@ -44,7 +46,7 @@ def plot_matches_played_per_year(matches_per_year):
 
 
 def compute_and_plot_matches_played_per_year(matches):
-    """Handle all the function calls here 
+    """Handle all the function calls here
 
     :param matches : list of dictionaries of matches.csv data
     """

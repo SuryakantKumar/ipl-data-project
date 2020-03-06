@@ -1,12 +1,15 @@
+'''Importing pyplot module of matplotlib library'''
+
 import matplotlib.pyplot as plt
 
 
 def matches_won_after_toss_decision(matches):
     """Compute number of winning matches by toss winner and decision,
-    of either choosing bat first or field first for every season 
+    of either choosing bat first or field first for every season
 
     :param matches : list of dictionaries of matches.csv data \n
-    :return sorted_bat_field_per_year : Dictionary of dictionary of win over choosing bat and field per year
+    :return sorted_bat_field_per_year : Dictionary of dictionary of win over choosing
+    bat and field per year
     """
     bat_field_per_year = {}
     for match in matches:
@@ -42,7 +45,8 @@ def matches_won_after_toss_decision(matches):
 def plot_matches_won_after_toss_decision(sorted_bat_field_per_year):
     """Plot stacked bar chart for number of winning matches after toss decision as bat/field
 
-    :param sorted_bat_field_per_year : Dictionary of dictionary of win over choosing bat and field per year
+    :param sorted_bat_field_per_year : Dictionary of dictionary of win over choosing
+    bat and field per year
     """
     years = []
     won_over_bat = []
@@ -65,7 +69,7 @@ def plot_matches_won_after_toss_decision(sorted_bat_field_per_year):
 
 
 def compute_and_plot_matches_won_after_toss_decision(matches):
-    """Handle all the function calls here 
+    """Handle all the function calls here
 
     :param matches : list of dictionaries of matches.csv data
     """

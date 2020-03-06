@@ -2,14 +2,6 @@
 
 This is a repository consisting of some analysis and representation of data over the IPL Data set available on kaggle https://www.kaggle.com/manasgarg/ipl 
 
-IPL data is available on kaggle as two csv files :
-1. matches.csv - Consist of 636 rows × 18 columns
-2. deliveries.csv - Consist of 150460 rows × 21 columns
-
-Apart from these two datasets, there are two more mock datasets which are used to test the extraction and computation of different scenarios/problems as :
-1. mock_matches.csv - Consist of 15 rows × 18 columns
-2. mock_deliveries.csv - Consists of rows 319 rows × 21 columns
-
 Install 'requirements.txt' if you want to use this project.
 
 At first, i transformed these data files from raw csv format to a data structure in a format suitable for plotting with matplotlib.

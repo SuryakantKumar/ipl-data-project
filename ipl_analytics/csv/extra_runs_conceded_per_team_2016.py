@@ -1,3 +1,5 @@
+'''Importing pyplot module of matplotlib library'''
+
 import matplotlib.pyplot as plt
 
 
@@ -5,8 +7,8 @@ def start_and_end_match_id(matches):
     """Compute starting match id and ending match id from matches.csv data,
     on the basis of season 2016 to use into deliveries.csv data
 
-    :param matches : list of dictionaries of matches.csv data \n
-    :return start_id : int start match id of matches played in 2016 \n
+    :param matches : list of dictionaries of matches.csv data\n
+    :return start_id : int start match id of matches played in 2016\n
     :return end_id : int end match id of matches played in 2016
     """
     start_id = 1000
@@ -22,11 +24,11 @@ def start_and_end_match_id(matches):
 
 
 def extra_runs_conceded_per_team(deliveries, start_id, end_id):
-    """For every ball, Compute all the teams with their extra runs conceded 
+    """For every ball, Compute all the teams with their extra runs conceded
 
-    :param deliveries : list of dictionaries of deliveries.csv data \n
-    :param start_id : int start match id of matches played in 2016 \n
-    :param end_id : int end match id of matches played in 2016 \n
+    :param deliveries : list of dictionaries of deliveries.csv data\n
+    :param start_id : int start match id of matches played in 2016\n
+    :param end_id : int end match id of matches played in 2016\n
     :return teams_with_extras : Dictionary of teams with their extra runs conceded
     """
     teams_with_extras = {}
@@ -50,7 +52,7 @@ def extra_runs_conceded_per_team(deliveries, start_id, end_id):
 
 
 def plot_extra_runs_conceded_per_team(teams_with_extras):
-    """Plot horizontal bar chart for extra runs conceded by each team in season 2016 
+    """Plot horizontal bar chart for extra runs conceded by each team in season 2016
 
     :param teams_with_extras : Dictionary of teams with their extra runs conceded \n
     """
@@ -71,7 +73,7 @@ def plot_extra_runs_conceded_per_team(teams_with_extras):
 
 
 def compute_and_plot_extra_runs_conceded_per_team(matches, deliveries):
-    """Handle all the function calls here 
+    """Handle all the function calls here
 
     :param matches : list of dictionaries of matches.csv data \n
     :param deliveries : list of dictionaries of deliveries.csv data \n
